@@ -32,7 +32,13 @@
             this.rows.push(new Array(NUM_COLS));
           }
         }
+
+        setSquare(col, row, value) {
+            this.rows[row][col] = value;
+        }
     }
+
+
 
     let board = new Board();
 
@@ -67,15 +73,25 @@
                 }
             }
         }
+    }
 
+    let currentRow = 0;
+    function updateTrites() {
+        currentRow = currentRow + 1;
+        if (currentRow < NUM_ROWS) {
+            board.setSquare(3, currentRow, true);
+            board.setSquare(3, currentRow -1, false);
+        }
 
-
+        drawFrame();
     }
 
 
     function main() {
         canvas = document.getElementById('the-canvas');
         drawFrame();
+
+        setInterval(updateTrites, 400);
     }
 
     main();

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Trites</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+        #the-canvas {
+            border: 1px solid grey;
+            background-color: white;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Trites</h1>
+    <canvas id="the-canvas" width="600" height="800"></canvas>
+  </body>
+  <script>
+    const GRID_WIDTH = 600;
+    const GRID_HEIGHT = 800;
+    const NUM_ROWS = 20;
+    const NUM_COLS = 10;
+    let canvas;
+
+
+    class Board {
+        constructor() {
+          this.rows = [];
+          for (let i = 0; i < NUM_ROWS; ++i) {
+            this.rows.push(new Array(NUM_COLS));
+          }
+        }
+    }
+
+    let board = new Board();
+
+
+    function drawFrame() {
+        let ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        console.log('Drawing a frame!');
+        let ROW_HEIGHT = GRID_HEIGHT / NUM_ROWS;
+        ctx.beginPath();
+        for (let i = 0; i < NUM_ROWS; ++i) {
+            let y = i * ROW_HEIGHT;
+            ctx.moveTo(0, y);
+            ctx.lineTo(GRID_WIDTH, y);
+        }
+
+        let COL_WIDTH = GRID_WIDTH / NUM_COLS;
+        for (let i = 0; i < NUM_ROWS; ++i) {
+            let x = i * COL_WIDTH;
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, GRID_HEIGHT);
+        }
+        ctx.stroke();
+
+        for (let row = 0; row < NUM_ROWS; ++row) {
+            for (let col = 0; col < NUM_COLS; ++col) {
+                if (board.rows[row][col]) {
+                    let x = col * COL_WIDTH;
+                    let y = row * ROW_HEIGHT;
+                    ctx.fillRect(x, y, COL_WIDTH, ROW_HEIGHT);
+                }
+            }
+        }
+
+
+
+    }
+
+
+    function main() {
+        canvas = document.getElementById('the-canvas');
+        drawFrame();
+    }
+
+    main();
+  </script>
+</html>

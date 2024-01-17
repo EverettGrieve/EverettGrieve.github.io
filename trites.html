@@ -15,14 +15,14 @@
   </head>
   <body>
     <h1>Trites</h1>
-    <canvas id="the-canvas" width="600" height="800"></canvas>
+    <canvas id="the-canvas" width="400" height="450"></canvas>
   </body>
   <script>
-    const GRID_WIDTH = 600;
-    const GRID_HEIGHT = 800;
+    const canvas = document.getElementById('the-canvas');
+    const GRID_WIDTH = canvas.width;
+    const GRID_HEIGHT = canvas.height;
     const NUM_ROWS = 20;
     const NUM_COLS = 10;
-    let canvas;
 
 
     class Board {
@@ -88,7 +88,6 @@
 
 
     function main() {
-        canvas = document.getElementById('the-canvas');
         drawFrame();
 
         setInterval(updateTrites, 400);

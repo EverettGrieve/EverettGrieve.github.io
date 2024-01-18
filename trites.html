@@ -79,16 +79,24 @@
     function updateTrites() {
         currentRow = currentRow + 1;
         if (currentRow < NUM_ROWS) {
-            board.setSquare(3, currentRow, true);
+            board.setSquare(3 , currentRow, true);
             board.setSquare(3, currentRow -1, false);
         }
 
         drawFrame();
     }
 
+    function onKeyDown(e) {
+        if (e.key == 'ArrowLeft') {
+            console.log('LEFT!');
+        } else if (e.key == 'ArrowRight') {
+            console.log('RIGHT!');
+        }
+    }
 
     function main() {
         drawFrame();
+        document.onkeydown = onKeyDown;
 
         setInterval(updateTrites, 400);
     }
